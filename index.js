@@ -37,6 +37,53 @@ async function handleSearch(){
             <p class = "movie-plot">${data.Plot}</p>
         </div>
         `
+            const watchlistBtn = document.getElementById('add-watchlist')           
+             if(isInWatchlist(data.Title)){
+                watchlistBtn.classList.add('added')
+                watchlistBtn.textContent = 'Added'
+                watchlistBtn.setAttribute('aria-disabled', 'true')
+            }else{
+        watchlistBtn.addEventListener('click', (e)=>{
+            e.preventDefault()
+            addtoLocalStorage(
+                data.Poster, data.Title, data.imdbRating, data.Runtime, data.Genre, data.Plot   
+            )
+            watchlistBtn.classList.add('added')
+                watchlistBtn.textContent = 'Added'
+                watchlistBtn.setAttribute('aria-disabled', 'true')
+        })
         }
+    }
     
+}
+
+let watchlist
+
+function addtoLocalStorage(poster, title, rating, runtime, genre, plot){
+    if(localStorage.getItem('watchlist')){ //if there's existing watchlist, add the new to the existing
+        watchlist = JSON.parse(localStorage.getItem('watchlist'))
+    } else{
+        watchlist = []
+    }
+    if(isInWatchlist(title)){
+        console.log('MOVIE is already in watchlist')
+    } else{
+    watchlist.push(
+        {poster, title, rating, runtime, genre, plot})
+
+    localStorage.setItem('watchlist', JSON.stringify(watchlist))
+    console.log('added to watchlist', watchlist)
+    }
+}
+
+function isInWatchlist(title){
+    if(localStorage.getItem('watchlist')){
+        watchlist = JSON.parse(localStorage.getItem('watchlist'))
+    }else{
+        watchlist = []
+    }   
+
+    return watchlist.some(function(movie){
+        return movie.title === title //if title is same, movie is already in watchlist
+    })
 }
