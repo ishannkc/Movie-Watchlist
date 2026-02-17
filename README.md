@@ -21,15 +21,27 @@ A simple, responsive movie search and watchlist app that uses the OMDb API. Sear
 3. Search for a movie title and add it to your watchlist.
 
 ### Configuration
-This project uses a hard-coded OMDb API key in [index.js](index.js). If you want to use your own key:
+To use your own OMDb API key without exposing it in version control:
+
 1. Get an API key from [OMDb](https://www.omdbapi.com/apikey.aspx).
-2. Replace the value of `API_KEY` in [index.js](index.js).
+2. In the project root, create a file named `.config.js` (do not include it in git).
+3. Add the following line to `.config.js`:
+
+	```js
+	export const API_KEY = 'YOUR_OMDB_API_KEY';
+	```
+
+4. Save the file. The app will now import your key from `.config.js`.
+
+**Note:** `.config.js` is already listed in `.gitignore` so it will not be committed.
 
 ### Project Structure
 - [index.html](index.html) - Search page UI
 - [watchlist.html](watchlist.html) - Watchlist page UI
 - [index.js](index.js) - App logic (search, add/remove, localStorage)
 - [index.css](index.css) - Global styles
+- [.config.example.js](.config.example.js) - API key template (copy to .config.js)
+- .config.js - Local API key (git-ignored)
 - img/ - Assets used by the UI
 
 ### Usage Notes
