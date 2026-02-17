@@ -1,8 +1,8 @@
+import { API_KEY } from "./.config";
+
 const searchBtn = document.getElementById('search-btn');
 const inputValue = document.getElementById('search-input')
 const moviesContainer = document.getElementById('movies-container')
-
- const API_KEY = 'c7244e8d'
 
  async function handleSearch(){
     const res = await fetch(`https://www.omdbapi.com/?t=${inputValue.value}&apikey=${API_KEY}`)
