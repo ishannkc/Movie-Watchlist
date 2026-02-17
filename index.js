@@ -1,4 +1,4 @@
-import { API_KEY } from "./.config";
+import { API_KEY } from "./config.js";
 
 const searchBtn = document.getElementById('search-btn');
 const inputValue = document.getElementById('search-input')
@@ -109,12 +109,7 @@ inputValue.addEventListener('keypress', (e) => { // Search button will trigger w
 const watchlistLink = document.getElementById('watchlist-link')
 
 
-if(watchlistLink){
-watchlistLink.addEventListener('click', (e)=>{
-    e.preventDefault()
-    window.location.href = 'watchlist.html'
-})
-}
+// No need to handle click event for watchlistLink if it has href
 if(window.location.pathname.includes('watchlist.html')){ //if the pathname includes watchlist.html, then we get the watchlist
         handleWatchlist()
     }
