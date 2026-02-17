@@ -1,5 +1,6 @@
 ## Movie Watchlist
 ![Search Page Preview](img/preview.png)
+<br>
 ![Watchlist Page Preview](img/preview2.png)
 A simple, responsive movie search and watchlist app that uses the OMDb API. Search by title, view basic details, and save favorites to a local watchlist.
 
